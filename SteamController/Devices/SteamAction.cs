@@ -257,7 +257,7 @@ namespace SteamController.Devices
         Absolute,
         AbsoluteTime,
         Delta,
-        DeltaTime
+        DeltaTime,
     }
 
     public class SteamAxis : SteamAction
@@ -271,10 +271,8 @@ namespace SteamController.Devices
         public SteamButton? ActiveButton { get; internal set; }
         public SteamButton? VirtualLeft { get; internal set; }
         public SteamButton? VirtualRight { get; internal set; }
-        public short Deadzone { get; internal set; }
-        public short MinChange { get; internal set; }
+        public short MinChange { get; internal set; } = 10;
         public DeltaValueMode DeltaValueMode { get; internal set; } = DeltaValueMode.Absolute;
-
         public short Value
         {
             get { return ValueCanBeUsed ? rawValue : (short)0; }
@@ -292,7 +290,7 @@ namespace SteamController.Devices
         public static implicit operator bool(SteamAxis button) => button.Active;
         public static implicit operator short(SteamAxis button)
         {
-            return Math.Abs(button.Value) > button.Deadzone ? button.Value : (short)0;
+            return button.Value;
         }
 
         public bool Active
@@ -305,33 +303,31 @@ namespace SteamController.Devices
             get { return GetDeltaValue(-1, 1, DeltaValueMode); }
         }
 
+  
+
         public double GetDeltaValue(double min, double max, DeltaValueMode mode)
         {
+            
             int value = 0;
-
             switch (mode)
             {
                 case DeltaValueMode.Absolute:
-                    if (Math.Abs(Value) < Deadzone)
-                        return 0.0;
                     value = Value;
                     break;
 
                 case DeltaValueMode.AbsoluteTime:
-                    if (Math.Abs(Value) < Deadzone)
-                        return 0.0;
                     value = (int)(Value * (Controller?.DeltaTime ?? 0.0));
                     break;
 
                 case DeltaValueMode.Delta:
                     value = Value - LastValue;
-                    if (Math.Abs(Value) < MinChange)
+                    if (Math.Abs(value) < MinChange)
                         return 0.0;
                     break;
 
                 case DeltaValueMode.DeltaTime:
                     value = Value - LastValue;
-                    if (Math.Abs(Value) < MinChange)
+                    if (Math.Abs(value) < MinChange)
                         return 0.0;
                     value = (int)(value * (Controller?.DeltaTime ?? 0.0));
                     break;
@@ -341,7 +337,9 @@ namespace SteamController.Devices
                 return 0.0;
 
             double factor = (double)(value - short.MinValue) / (short.MaxValue - short.MinValue);
+            
             return factor * (max - min) + min;
+            
         }
 
         internal override void Reset()
