@@ -20,7 +20,7 @@ namespace SteamController.Profiles.Default
 
             EmulateScrollOnLPad(c);
             EmulateMouseOnRPad(c);
-            EmulateMouseOnRStick(c);
+            //EmulateMouseOnRStick(c);
 
             if (c.Steam.BtnA.Pressed())
             {
@@ -79,12 +79,12 @@ namespace SteamController.Profiles.Default
                 c.Keyboard.KeyPress(VirtualKeyCode.LWIN, VirtualKeyCode.SNAPSHOT);
             }
 
-            if (c.Steam.BtnVirtualLeftThumbUp.JustPressed() || c.Steam.BtnVirtualLeftThumbUp.HoldRepeat(ShortcutConsumed))
+            if (c.Steam.BtnVirtualRightThumbUp.JustPressed() || c.Steam.BtnVirtualRightThumbUp.HoldRepeat(ShortcutConsumed))
             {
                 WindowsSettingsBrightnessController.Increase(5);
             }
 
-            if (c.Steam.BtnVirtualLeftThumbDown.JustPressed() || c.Steam.BtnVirtualLeftThumbDown.HoldRepeat(ShortcutConsumed))
+            if (c.Steam.BtnVirtualRightThumbDown.JustPressed() || c.Steam.BtnVirtualRightThumbDown.HoldRepeat(ShortcutConsumed))
             {
                 WindowsSettingsBrightnessController.Increase(-5);
             }
