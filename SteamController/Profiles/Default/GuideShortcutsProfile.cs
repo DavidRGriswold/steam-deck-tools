@@ -29,17 +29,18 @@ namespace SteamController.Profiles.Default
 
             if (c.Steam.BtnB.HoldOnce(HoldForClose, ShortcutConsumed))
             {
-                Helpers.ForegroundProcess.Store();
+                //Helpers.ForegroundProcess.Store();
 
-                // close application
-                c.Keyboard.KeyPress(VirtualKeyCode.LMENU, VirtualKeyCode.F4);
-            }
-            else if (c.Steam.BtnB.HoldChain(HoldForKill, ShortcutConsumed, "KillProcess"))
-            {
-                // We want to KILL only the process that
-                // was foreground last time
+                // close application, or not!
+                //c.Keyboard.KeyPress(VirtualKeyCode.LMENU, VirtualKeyCode.F4);
                 Helpers.ForegroundProcess.Kill(true);
             }
+            // else if (c.Steam.BtnB.HoldChain(HoldForKill, ShortcutConsumed, "KillProcess"))
+            // {
+            //     // We want to KILL only the process that
+            //     // was foreground last time
+            //     Helpers.ForegroundProcess.Kill(true);
+            // }
 
             if (c.Steam.BtnX.Pressed())
             {
@@ -79,25 +80,29 @@ namespace SteamController.Profiles.Default
                 c.Keyboard.KeyPress(VirtualKeyCode.LWIN, VirtualKeyCode.SNAPSHOT);
             }
 
-            if (c.Steam.BtnVirtualLeftThumbUp.JustPressed() || c.Steam.BtnVirtualLeftThumbUp.HoldRepeat(ShortcutConsumed))
+            if (c.Steam.BtnVirtualRightThumbUp.JustPressed() || c.Steam.BtnVirtualLeftThumbUp.HoldRepeat(ShortcutConsumed))
             {
                 WindowsSettingsBrightnessController.Increase(5);
             }
 
-            if (c.Steam.BtnVirtualLeftThumbDown.JustPressed() || c.Steam.BtnVirtualLeftThumbDown.HoldRepeat(ShortcutConsumed))
+            if (c.Steam.BtnVirtualRightThumbDown.JustPressed() || c.Steam.BtnVirtualLeftThumbDown.HoldRepeat(ShortcutConsumed))
             {
                 WindowsSettingsBrightnessController.Increase(-5);
             }
 
             if (c.Steam.BtnDpadRight.Pressed())
             {
-                //c.Keyboard.KeyPress(VirtualKeyCode.RETURN); // old!
-                c.Keyboard.KeyPress(VirtualKeyCode.TAB);
+                c.Keyboard.KeyPress(VirtualKeyCode.RETURN); // old!
+                //c.Keyboard.KeyPress(VirtualKeyCode.TAB);
             }
 
             if (c.Steam.BtnDpadDown.Pressed())
             {
-                //c.Keyboard.KeyPress(VirtualKeyCode.TAB);
+                c.Keyboard.KeyPress(VirtualKeyCode.TAB);
+                //c.Keyboard.KeyPress(VirtualKeyCode.LWIN,VirtualKeyCode.VK_D);
+            }
+
+            if (c.Steam.BtnRightStickPress.Pressed()) {
                 c.Keyboard.KeyPress(VirtualKeyCode.LWIN,VirtualKeyCode.VK_D);
             }
 
