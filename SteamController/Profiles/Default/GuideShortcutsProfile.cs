@@ -20,7 +20,7 @@ namespace SteamController.Profiles.Default
 
             EmulateScrollOnLPad(c);
             EmulateMouseOnRPad(c);
-            EmulateMouseOnRStick(c);
+            //EmulateMouseOnRStick(c);
 
             if (c.Steam.BtnA.Pressed())
             {
@@ -29,7 +29,7 @@ namespace SteamController.Profiles.Default
 
             if (c.Steam.BtnB.HoldOnce(HoldForClose, ShortcutConsumed))
             {
-                //Helpers.ForegroundProcess.Store();
+                Helpers.ForegroundProcess.Store();
 
                 // close application, or not!
                 //c.Keyboard.KeyPress(VirtualKeyCode.LMENU, VirtualKeyCode.F4);
