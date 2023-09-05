@@ -53,7 +53,7 @@ namespace CommonHelpers
             return true;
         }
 
-        protected bool Set<T>(string key, T value)
+        public bool Set<T>(string key, T value)
         {
             var typeConverter = TypeDescriptor.GetConverter(typeof(T));
             var valueString = typeConverter.ConvertToString(value);
@@ -69,7 +69,7 @@ namespace CommonHelpers
             return true;
         }
 
-        protected T Get<T>(string key, T defaultValue, bool touchSettings = false)
+        public T Get<T>(string key, T defaultValue, bool touchSettings = false)
         {
             if (cachedValues.TryGetValue(key, out var cachedValue))
                 return ((T?)cachedValue) ?? defaultValue;
