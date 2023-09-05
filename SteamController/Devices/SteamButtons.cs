@@ -39,6 +39,12 @@ namespace SteamController.Devices
         public readonly SteamButton BtnVirtualLeftThumbDown = new SteamButton();
         public readonly SteamButton BtnVirtualLeftThumbLeft = new SteamButton();
         public readonly SteamButton BtnVirtualLeftThumbRight = new SteamButton();
+        
+        public readonly SteamButton BtnVirtualRightThumbUp = new SteamButton();
+        public readonly SteamButton BtnVirtualRightThumbDown = new SteamButton();
+        public readonly SteamButton BtnVirtualRightThumbLeft = new SteamButton();
+        public readonly SteamButton BtnVirtualRightThumbRight = new SteamButton();
+        
 
         public readonly SteamAxis LPadX = new SteamAxis(0x10) { DeltaValueMode = Devices.DeltaValueMode.Delta };
         public readonly SteamAxis LPadY = new SteamAxis(0x12) { DeltaValueMode = Devices.DeltaValueMode.Delta };
@@ -71,6 +77,12 @@ namespace SteamController.Devices
             LeftThumbX.VirtualRight = BtnVirtualLeftThumbRight;
             LeftThumbY.VirtualLeft = BtnVirtualLeftThumbDown;
             LeftThumbY.VirtualRight = BtnVirtualLeftThumbUp;
-        }
+
+            RightThumbX.VirtualLeft = BtnVirtualRightThumbLeft;
+            RightThumbX.VirtualRight = BtnVirtualRightThumbRight;
+            RightThumbY.VirtualLeft = BtnVirtualRightThumbDown;
+            RightThumbY.VirtualRight = BtnVirtualRightThumbUp;
+
+          }
     }
 }

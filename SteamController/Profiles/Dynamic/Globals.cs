@@ -72,7 +72,10 @@ namespace SteamController.Profiles.Dynamic
             public Button BtnVirtualLeftThumbDown { get => new Button(Target.BtnVirtualLeftThumbDown); }
             public Button BtnVirtualLeftThumbLeft { get => new Button(Target.BtnVirtualLeftThumbLeft); }
             public Button BtnVirtualLeftThumbRight { get => new Button(Target.BtnVirtualLeftThumbRight); }
-
+            public Button BtnVirtualRightThumbUp { get => new Button(Target.BtnVirtualRightThumbUp); }
+            public Button BtnVirtualRightThumbDown { get => new Button(Target.BtnVirtualRightThumbDown); }
+            public Button BtnVirtualRightThumbLeft { get => new Button(Target.BtnVirtualRightThumbLeft); }
+            public Button BtnVirtualRightThumbRight { get => new Button(Target.BtnVirtualRightThumbRight); }
             public Axis LPadX { get => new Axis(Target.LPadX); }
             public Axis LPadY { get => new Axis(Target.LPadY); }
             public Axis RPadX { get => new Axis(Target.RPadX); }
