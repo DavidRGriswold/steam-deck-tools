@@ -1,6 +1,5 @@
 ﻿using CommonHelpers;
 using ExternalHelpers;
-using hidapi;
 using Microsoft.Win32;
 using PowerControl.External;
 using PowerControl.Helpers;
@@ -12,13 +11,16 @@ namespace PowerControl
 {
     internal class Controller : IDisposable
     {
-        public const String Title = "Power Control";
-        public static readonly String TitleWithVersion = Title + " v" + Application.ProductVersion.ToString();
+        public const string Title = "Power Control";
+        public static readonly string TitleWithVersion = Title + " v" + Application.ProductVersion.ToString();
         public const int KeyPressRepeatTime = 400;
         public const int KeyPressNextRepeatTime = 90;
+        public static readonly Icon Icon = WindowsDarkMode.IsDarkModeEnabled 
+            ? Resources.traffic_light_outline_light 
+            : Resources.traffic_light_outline;
 
         Container components = new Container();
-        System.Windows.Forms.NotifyIcon notifyIcon;
+        NotifyIcon notifyIcon;
         StartupManager startupManager = new StartupManager(Title);
 
         Menu.MenuRoot rootMenu = MenuStack.Root;
@@ -131,8 +133,8 @@ namespace PowerControl
             var exitItem = contextMenu.Items.Add("&Exit");
             exitItem.Click += ExitItem_Click;
 
-            notifyIcon = new System.Windows.Forms.NotifyIcon(components);
-            notifyIcon.Icon = WindowsDarkMode.IsDarkModeEnabled ? Resources.traffic_light_outline_light : Resources.traffic_light_outline;
+            notifyIcon = new NotifyIcon(components);
+            notifyIcon.Icon = Icon;
             notifyIcon.Text = TitleWithVersion;
             notifyIcon.Visible = true;
             notifyIcon.ContextMenuStrip = contextMenu;
@@ -257,7 +259,7 @@ namespace PowerControl
             try
             {
                 notifyIcon.Text = TitleWithVersion + ". RTSS Version: " + OSD.Version;
-                notifyIcon.Icon = WindowsDarkMode.IsDarkModeEnabled ? Resources.traffic_light_outline_light : Resources.traffic_light_outline;
+                notifyIcon.Icon = Icon;
             }
             catch
             {

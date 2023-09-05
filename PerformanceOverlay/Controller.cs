@@ -9,6 +9,9 @@ namespace PerformanceOverlay
     {
         public const String Title = "Performance Overlay";
         public static readonly String TitleWithVersion = Title + " v" + System.Windows.Forms.Application.ProductVersion.ToString();
+        public static readonly Icon Icon = WindowsDarkMode.IsDarkModeEnabled
+            ? Resources.poll_light
+            : Resources.poll;
 
         Container components = new Container();
         RTSSSharedMemoryNET.OSD? osd;
@@ -104,7 +107,7 @@ namespace PerformanceOverlay
             exitItem.Click += ExitItem_Click;
 
             notifyIcon = new System.Windows.Forms.NotifyIcon(components);
-            notifyIcon.Icon = WindowsDarkMode.IsDarkModeEnabled ? Resources.poll_light : Resources.poll;
+            notifyIcon.Icon = Icon;
             notifyIcon.Text = TitleWithVersion;
             notifyIcon.Visible = true;
             notifyIcon.ContextMenuStrip = contextMenu;
@@ -241,7 +244,7 @@ namespace PerformanceOverlay
             try
             {
                 notifyIcon.Text = TitleWithVersion + ". RTSS Version: " + OSD.Version;
-                notifyIcon.Icon = WindowsDarkMode.IsDarkModeEnabled ? Resources.poll_light : Resources.poll;
+                notifyIcon.Icon = Icon;
             }
             catch
             {

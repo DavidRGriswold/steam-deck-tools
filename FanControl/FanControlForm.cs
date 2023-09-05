@@ -23,6 +23,9 @@ namespace FanControl
             InitializeComponent();
 
             Text += " v" + Application.ProductVersion.ToString();
+            Icon = WindowsDarkMode.IsDarkModeEnabled
+                ? Resources.fan_white
+                : Resources.fan;
             Instance.Open(Text, true, "Global\\FanControlOnce");
             Instance.RunUpdater(Text);
 
@@ -34,7 +37,7 @@ namespace FanControl
 
             notifyIcon.Text = Text;
             notifyIcon.Visible = true;
-            notifyIcon.Icon = WindowsDarkMode.IsDarkModeEnabled ? Resources.fan_white : Resources.fan;
+            notifyIcon.Icon = Icon;
 
             TopMost = Settings.Default.AlwaysOnTop;
             toolStripMenuItemAlwaysOnTop.Checked = TopMost;
@@ -192,7 +195,7 @@ namespace FanControl
 
         private void propertyGridUpdateTimer_Tick(object sender, EventArgs e)
         {
-            notifyIcon.Icon = WindowsDarkMode.IsDarkModeEnabled ? Resources.fan_white : Resources.fan;
+            notifyIcon.Icon = Icon;
 
             if (!Visible)
                 return;
