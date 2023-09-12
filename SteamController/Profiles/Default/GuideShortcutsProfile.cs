@@ -106,13 +106,13 @@ namespace SteamController.Profiles.Default
 
             if (c.Steam.BtnRightStickPress.Pressed())
             {
-                c.Keyboard.KeyPress(VirtualKeyCode.LWIN,VirtualKeyCode.VK_D);
+                c.Keyboard.KeyPress(VirtualKeyCode.LWIN, VirtualKeyCode.VK_D);
             }
 
             // This is "[" + "]" on a US keyboard, the default shortcut for the Game Pauser program on steam
             if (c.Steam.BtnLeftStickPress.Pressed()) 
             {
-                c.Keyboard.KeyPress(new VirtualKeyCode[]{VirtualKeyCode.OEM_4,VirtualKeyCode.OEM_6});
+                c.Keyboard.KeyPress(new VirtualKeyCode[]{VirtualKeyCode.OEM_4, VirtualKeyCode.OEM_6});
             }
 
             // Additional binding for tool hotkeys (Lossless Fullscreen is nice)
